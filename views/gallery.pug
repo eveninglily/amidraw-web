@@ -2,18 +2,15 @@ html
   head
     title=title
     link(rel='stylesheet', href='gallery.css')
-    style(type='text/css').
-      img {
-        width: 320px;
-        height: 180px;
-      }
   body
-    each image in gallery_items
-      -
-        var iTitle = image.title
-        var path = image.path
-        var author = image.creator
-        var date = image.date
-      h1=iTitle
-      h4!='by ' + author + ' on ' + date
-      a(href=path): img(src=path)
+    div(class='gallery-body')
+      each image in gallery_items
+        -
+          var iTitle = image.title
+          var path = image.path
+          var author = image.creator
+          var date = image.date
+        div(class='gallery-item')
+          h1=iTitle
+          h4!='by ' + author + ' on ' + date
+          a(href=path): img(src=path class='gallery-img')
