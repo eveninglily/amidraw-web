@@ -1,0 +1,25 @@
+{
+  "name": "amidraw-web",
+  "version": "0.0.1",
+  "description": "Website and services for AmiDraw",
+  "main": "webserver.js",
+  "dependencies": {
+    "express": "^4.14.0",
+    "pg": "^6.1.2",
+    "pug": "^2.0.0-beta6"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/McIntireEvan/amidraw-web.git"
+  },
+  "author": "Evan McIntire <mcintire.evan@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/McIntireEvan/amidraw-web/issues"
+  },
+  "homepage": "https://github.com/McIntireEvan/amidraw-web#readme"
+}
