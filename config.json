@@ -1,0 +1,9 @@
+{
+    "database" : {
+        "user" : "",
+        "password": "",
+        "server": "",
+        "port": "",
+        "database": ""
+    }
+}
