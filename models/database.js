@@ -9,14 +9,18 @@ var connection = 'pg://' + dbConfig.user + ":" + dbConfig.password + "@" + dbCon
 var client = new pg.Client(connection);
 client.connect();
 
-//client.query("DROP TABLE gallery");
-//client.query("CREATE TABLE IF NOT EXISTS gallery(id integer serial PRIMARY KEY, title varchar(64))");
-//client.query("INSERT INTO gallery(id, title) values ($1, $2)", [1, 'Test']);
-//client.query("INSERT INTO gallery(id, title) values ($1, $2)", [2, 'Test2']);
-//client.query("INSERT INTO gallery(id, title) values ($1, $2)", [3, 'Test3']);
+var sql = fs.readFileSync('models/createdb.sql').toString();
+client.query(sql);
 
 function getAllGalleryEntries(callback) {
-    var query = client.query("SELECT * FROM gallery");
+    var query = client.query("SELECT gallery.id, \
+                                     gallery.title, \
+                                     gallery.description, \
+                                     gallery.imgpath, \
+                                     users.name as username \
+                              FROM gallery, users \
+                              WHERE gallery.userid = users.id \
+                              ORDER BY gallery.id");
     query.on("row", function (row, result) {
         result.addRow(row);
     }).on("end", function(result) {
@@ -29,7 +33,10 @@ function getGalleryEntry(id, callback, err) {
         err();
         return;
     }
-    var query = client.query("SELECT * FROM gallery WHERE id=$1 ", [id]);
+    var query = client.query("SELECT gallery.*, \
+                                     users.name as username \
+                              FROM gallery, users \
+                              WHERE gallery.id=$1 AND (gallery.userid = users.id) ", [id]);
     query.on("row", function (row, result) {
         result.addRow(row);
     }).on("end", function(result) {

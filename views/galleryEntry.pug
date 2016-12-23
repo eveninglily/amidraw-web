@@ -5,5 +5,11 @@ html
   body
     -
         var iTitle = data.title
-    h1=iTitle   
-        
+        var creator = data.username
+        var imgpath = data.imgpath
+        var desc = data.description
+    h1!=iTitle + ' by ' + creator
+    br
+    p=desc
+    hr
+    img(src=imgpath class='gallery-img-fullsize')

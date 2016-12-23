@@ -10,15 +10,15 @@ html, body {
     height: 180px;
 }
 
+.gallery-img-fullsize {
+    width: 640px;
+    height: 360px;
+}
+
 .gallery-item {
     width: auto;
     height: auto;
     margin: 10px;
-}
-
-body {
-    display: flex;
-    justify-content: center;
 }
 
 .gallery-body {

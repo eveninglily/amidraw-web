@@ -7,10 +7,10 @@ html
       each image in gallery_items
         -
           var iTitle = image.title
-          var path = image.path
-          var author = image.creator
-          var date = image.date
+          var path = image.imgpath
+          var author = image.username
+          var id = image.id
         div(class='gallery-item')
           h1=iTitle
-          h4!='by ' + author + ' on ' + date
-          a(href=path): img(src=path class='gallery-img')
+          h4!='by ' + author
+          a(href!='gallery/' + id): img(src=path class='gallery-img')
