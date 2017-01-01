@@ -4,6 +4,7 @@
   "description": "Website and services for AmiDraw",
   "main": "webserver.js",
   "dependencies": {
+    "body-parser": "^1.15.2",
     "express": "^4.14.0",
     "pg": "^6.1.2",
     "pug": "^2.0.0-beta6"

@@ -9,8 +9,9 @@ var connection = 'pg://' + dbConfig.user + ":" + dbConfig.password + "@" + dbCon
 var client = new pg.Client(connection);
 client.connect();
 
-var sql = fs.readFileSync('models/createdb.sql').toString();
-client.query(sql);
+//Uncomment when regenerating db
+//var sql = fs.readFileSync('models/createdb.sql').toString();
+//client.query(sql);
 
 function getAllGalleryEntries(callback) {
     var query = client.query("SELECT gallery.id, \
@@ -48,7 +49,12 @@ function getGalleryEntry(id, callback, err) {
     });
 }
 
+function addGalleryEntry(title, description, path, userid) {
+    client.query("INSERT INTO gallery(title, description, imgpath, userid) values ($1, $2, $3, $4);", [title, description, path, userid]);
+}
+
 module.exports = {
     'getGalleryEntry': getGalleryEntry,
-    'getAllGalleryEntries': getAllGalleryEntries
+    'getAllGalleryEntries': getAllGalleryEntries,
+    'addGalleryEntry': addGalleryEntry
 }
