@@ -6,8 +6,8 @@ html, body {
 }
 
 .gallery-img {
-    width: 320px;
-    height: 180px;
+    width: 480px;
+    height: 270px;
 }
 
 .gallery-img-fullsize {
@@ -19,6 +19,29 @@ html, body {
     width: auto;
     height: auto;
     margin: 10px;
+    position: relative;
+}
+
+.gallery-item:hover .gallery-item-meta {
+    opacity: 1;
+    transition: opacity .4s;
+}
+
+.gallery-item-title {
+    margin: 0px;
+    padding: 0px;
+}
+
+.gallery-item-meta {
+    position: absolute;
+    padding: 10px;
+    left: 0;
+    bottom: 0;
+
+    color: white;
+    background: black;
+    width: calc(100% - 20px);
+    opacity: 0;
 }
 
 .gallery-body {

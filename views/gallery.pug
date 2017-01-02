@@ -3,6 +3,7 @@ html
     title="AmiDraw Gallery"
     link(rel='stylesheet', href='/gallery.css')
   body
+    h1="Gallery"
     div(class='gallery-body')
       each image in gallery_items
         -
@@ -11,6 +12,7 @@ html
           var author = image.username
           var id = image.id
         div(class='gallery-item')
-          h1=iTitle
-          h4!='by ' + author
+          div(class='gallery-item-meta')
+            h1(class='gallery-item-title')=iTitle
+            h4(class='gallery-item-title')!=author
           a(href!='gallery/' + id): img(src=path class='gallery-img')
