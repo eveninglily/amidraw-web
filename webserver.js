@@ -16,11 +16,15 @@ router.use(function timeLog (req, res, next) {
   next();
 });
 
-router.get('/gallery', function(req, res) {
+router.get('signup', function(req, res) {
+    res.send("Sign up");
+}).get('login', function(req, res) {
+    res.send("Log in");
+}).get('/gallery', function(req, res) {
     db.getAllGalleryEntries(function(data) {
         res.render('gallery', { gallery_items: data });
     });
-}).post('/gallery/api/post', function(req, res) {
+}).post('/api/gallery/create', function(req, res) {
     console.log(req.body);
     var key = req.body.apikey;
     console.log(key);
