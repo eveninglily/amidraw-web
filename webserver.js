@@ -24,6 +24,14 @@ router.get('signup', function(req, res) {
     db.getAllGalleryEntries(function(data) {
         res.render('gallery', { gallery_items: data });
     });
+}).get('/api/gallery/:id', function(req, res) {
+    db.getGalleryEntry(req.params.id, function(data) {
+        var entry = data["rows"][0];
+        res.setHeader('Content-Type', 'application/json');
+        res.send(JSON.stringify(entry));
+    }, function() {
+        res.sendStatus(404);
+    });
 }).post('/api/gallery/create', function(req, res) {
     console.log(req.body);
     var key = req.body.apikey;
