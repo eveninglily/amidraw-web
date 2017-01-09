@@ -1,0 +1,13 @@
+html
+  head
+    title="Login"
+    link(rel='stylesheet', href='/login.css')
+  body
+    form(method='POST' action='/login')
+      label="Username:"
+        input(type='text' name='username')
+      br
+      label="Password:"
+        input(type='password' name='password')
+      br
+      button(type='submit') Login

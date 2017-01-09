@@ -1,4 +1,5 @@
 var express = require('express');
+var session = require('express-session');
 var app = express();
 var router = express.Router();
 var bodyParser = require('body-parser');
@@ -6,20 +7,40 @@ var bodyParser = require('body-parser');
 var fs = require('fs');
 var db = require('./models/database.js');
 
+var passport = require('passport');
+var auth = require('./models/auth.js');
+
+passport.serializeUser(auth.serializeUser);
+passport.deserializeUser(auth.deserializeUser(db));
+passport.use('local', auth.localAuth(db));
+
 //TODO: Replace if open source/opening API
 var API_KEY = "7fd895d5-b1a8-441f-b4f1-1cc7995a8218";
-
-app.set('view engine', 'pug');
 
 router.use(function timeLog (req, res, next) {
   console.log('Time: ', Date.now());
   next();
 });
 
-router.get('signup', function(req, res) {
+function isLoggedIn(req, res, next) {
+    if (req.isAuthenticated()) {
+        return next();
+    }
+    res.redirect('/login');
+};
+
+router.get('/signup', function(req, res) {
     res.send("Sign up");
-}).get('login', function(req, res) {
-    res.send("Log in");
+}).post('/signup', function(req, res) {
+
+}).get('/login', function(req, res) {
+    res.render('login');
+}).post('/login', passport.authenticate('local', {
+    successRedirect: '/auth',
+    failureRedirect: '/login'
+})).get('/auth', isLoggedIn, function(req, res) {
+    console.log(req.user);
+    res.send("Logged in as " + req.user.name);
 }).get('/gallery', function(req, res) {
     db.getAllGalleryEntries(function(data) {
         res.render('gallery', { gallery_items: data });
@@ -57,7 +78,10 @@ router.get('signup', function(req, res) {
 });
 
 router.use('/', express.static('public'));
-
+app.use(session({ secret: 'tempsecret', resave: false, saveUninitialized: false }));
+app.set('view engine', 'pug');
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }))
 

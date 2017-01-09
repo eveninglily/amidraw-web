@@ -1,6 +1,8 @@
 var pg = require('pg');
 var fs = require('fs');
 
+var auth = require('./auth.js');
+
 var config = JSON.parse(fs.readFileSync('./config.json', 'UTF-8'));
 var dbConfig = config.database;
 
@@ -53,8 +55,28 @@ function addGalleryEntry(title, description, path, userid) {
     client.query("INSERT INTO gallery(title, description, imgpath, userid) values ($1, $2, $3, $4);", [title, description, path, userid]);
 }
 
+function getUser(username, callback, err) {
+    var query = client.query("SELECT * FROM users WHERE users.name=$1;", [username]);
+    query.on("row", function (row, result) {
+        result.addRow(row);
+    }).on("end", function(result) {
+        if(result.length == 0 || result["rows"][0] == null) {
+            err();
+            return;
+        }
+        callback(result);
+    });
+}
+
+function createUser(username, password) {
+    auth.hashPassword(password, function(hash) {
+        client.query("INSERT INTO users(name, password) values ($1, $2);", [username, hash]);
+    });
+}
+
 module.exports = {
     'getGalleryEntry': getGalleryEntry,
     'getAllGalleryEntries': getAllGalleryEntries,
-    'addGalleryEntry': addGalleryEntry
+    'addGalleryEntry': addGalleryEntry,
+    'getUser': getUser
 }
