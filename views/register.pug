@@ -1,0 +1,13 @@
+html
+  head
+    title="Register"
+    link(rel='stylesheet', href='/login.css')
+  body
+    form(method='POST' action='/signup')
+      label="Username:"
+        input(type='text' name='username')
+      br
+      label="Password:"
+        input(type='password' name='password')
+      br
+      button(type='submit') Register

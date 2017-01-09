@@ -12,8 +12,8 @@ var client = new pg.Client(connection);
 client.connect();
 
 //Uncomment when regenerating db
-//var sql = fs.readFileSync('models/createdb.sql').toString();
-//client.query(sql);
+var sql = fs.readFileSync('models/createdb.sql').toString();
+client.query(sql);
 
 function getAllGalleryEntries(callback) {
     var query = client.query("SELECT gallery.id, \
@@ -64,13 +64,13 @@ function getUser(username, callback, err) {
             err();
             return;
         }
-        callback(result);
+        callback(result["rows"][0]);
     });
 }
 
-function createUser(username, password) {
+function createUser(username, password, callback) {
     auth.hashPassword(password, function(hash) {
-        client.query("INSERT INTO users(name, password) values ($1, $2);", [username, hash]);
+        client.query("INSERT INTO users(name, password) values ($1, $2);", [username, hash], callback);
     });
 }
 
@@ -78,5 +78,6 @@ module.exports = {
     'getGalleryEntry': getGalleryEntry,
     'getAllGalleryEntries': getAllGalleryEntries,
     'addGalleryEntry': addGalleryEntry,
-    'getUser': getUser
+    'getUser': getUser,
+    'createUser': createUser
 }

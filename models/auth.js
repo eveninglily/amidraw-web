@@ -7,13 +7,12 @@ module.exports = {
     localAuth: function(db) {
         return new LocalStrategy({passReqToCallback : true }, function(req, username, password, done) {
             console.log(db);
-            return db.getUser(username, function(data) {
-                var entry = data["rows"][0];
-                checkPassword(password, entry, function(res) {
+            return db.getUser(username, function(user) {
+                checkPassword(password, user, function(res) {
                     if(!res) {
                         return done(null, false, { message: 'Incorrect Username/Password'})
                     } else {
-                        return done(null, entry);
+                        return done(null, user);
                     }
                 });
             }, function() {
@@ -35,9 +34,8 @@ function serializeUser(user, done) {
 //TODO: Fix this
 function deserializeUser(db) {
     return function(username, done) {
-        return db.getUser(username, function(data) {
-            var entry = data["rows"][0];
-            return done(null, entry);
+        return db.getUser(username, function(user) {
+            return done(null, user);
         }, function() {
             return done("Err?", null);
         });

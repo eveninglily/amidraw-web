@@ -10,6 +10,6 @@ CREATE TABLE IF NOT EXISTS gallery(
 DROP TABLE IF EXISTS users;
 CREATE TABLE IF NOT EXISTS users(
     id serial PRIMARY KEY,
-    name varchar(32),
+    name varchar(32) UNIQUE,
     password text
 );

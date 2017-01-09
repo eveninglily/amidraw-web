@@ -29,10 +29,16 @@ function isLoggedIn(req, res, next) {
     res.redirect('/login');
 };
 
-router.get('/signup', function(req, res) {
-    res.send("Sign up");
-}).post('/signup', function(req, res) {
-
+router.get('/register', function(req, res) {
+    res.render("register");
+}).post('/register', function(req, res) {
+    db.createUser(req.body.username, req.body.password, function(err, result) {
+        if(err) {
+            res.send("Error creating user");
+        } else {
+            res.send('User created!');
+        }
+    })
 }).get('/login', function(req, res) {
     res.render('login');
 }).post('/login', passport.authenticate('local', {
