@@ -1,8 +1,6 @@
 var pg = require('pg');
 var fs = require('fs');
 
-var auth = require('./auth.js');
-
 var config = JSON.parse(fs.readFileSync('./config.json', 'UTF-8'));
 var dbConfig = config.database;
 
@@ -12,8 +10,8 @@ var client = new pg.Client(connection);
 client.connect();
 
 //Uncomment when regenerating db
-var sql = fs.readFileSync('models/createdb.sql').toString();
-client.query(sql);
+//var sql = fs.readFileSync('models/createdb.sql').toString();
+//client.query(sql);
 
 function getAllGalleryEntries(callback) {
     var query = client.query("SELECT gallery.id, \
@@ -56,7 +54,7 @@ function addGalleryEntry(title, description, path, userid) {
 }
 
 function getUser(username, callback, err) {
-    var query = client.query("SELECT * FROM users WHERE users.name=$1;", [username]);
+    var query = client.query("SELECT * FROM users WHERE LOWER(users.name)=LOWER($1);", [username]);
     query.on("row", function (row, result) {
         result.addRow(row);
     }).on("end", function(result) {
@@ -64,14 +62,12 @@ function getUser(username, callback, err) {
             err();
             return;
         }
-        callback(result["rows"][0]);
+        callback(result ["rows"][0]);
     });
 }
 
 function createUser(username, password, callback) {
-    auth.hashPassword(password, function(hash) {
-        client.query("INSERT INTO users(name, password) values ($1, $2);", [username, hash], callback);
-    });
+    client.query("INSERT INTO users(name, password) values ($1, $2) RETURNING *;", [username, password], callback);
 }
 
 module.exports = {

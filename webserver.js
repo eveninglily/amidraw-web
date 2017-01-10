@@ -7,12 +7,8 @@ var bodyParser = require('body-parser');
 var fs = require('fs');
 var db = require('./models/database.js');
 
-var passport = require('passport');
 var auth = require('./models/auth.js');
-
-passport.serializeUser(auth.serializeUser);
-passport.deserializeUser(auth.deserializeUser(db));
-passport.use('local', auth.localAuth(db));
+var passport = auth.passport;
 
 //TODO: Replace if open source/opening API
 var API_KEY = "7fd895d5-b1a8-441f-b4f1-1cc7995a8218";
@@ -31,15 +27,10 @@ function isLoggedIn(req, res, next) {
 
 router.get('/register', function(req, res) {
     res.render("register");
-}).post('/register', function(req, res) {
-    db.createUser(req.body.username, req.body.password, function(err, result) {
-        if(err) {
-            res.send("Error creating user");
-        } else {
-            res.send('User created!');
-        }
-    })
-}).get('/login', function(req, res) {
+}).post('/register', passport.authenticate('register', {
+    successRedirect: '/auth',
+    failureRedirect: '/register'
+})).get('/login', function(req, res) {
     res.render('login');
 }).post('/login', passport.authenticate('local', {
     successRedirect: '/auth',
