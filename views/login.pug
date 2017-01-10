@@ -1,13 +1,14 @@
 html
   head
-    title="Login"
+    title="Log in"
     link(rel='stylesheet', href='/login.css')
   body
-    form(method='POST' action='/login')
-      label="Username:"
-        input(type='text' name='username')
-      br
-      label="Password:"
-        input(type='password' name='password')
-      br
-      button(type='submit') Login
+    div(class='container')
+      h1="Log in"
+      form(method='POST' action='/login')
+        input(placeholder='Username' type='text' name='username')
+        br
+        input(placeholder='Password' type='password' name='password')
+        br
+        button(type='submit') Log in
+      a(href='https://amidraw.com/register') Don't have an account? Register

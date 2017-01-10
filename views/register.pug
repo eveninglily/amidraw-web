@@ -3,11 +3,12 @@ html
     title="Register"
     link(rel='stylesheet', href='/login.css')
   body
-    form(method='POST' action='/signup')
-      label="Username:"
-        input(type='text' name='username')
-      br
-      label="Password:"
-        input(type='password' name='password')
-      br
-      button(type='submit') Register
+    div(class='container')
+      h1="Register"
+      form(method='POST' action='/register')
+        input(placeholder='Username' type='text' name='username')
+        br
+        input(placeholder='Password' type='password' name='password')
+        br
+        button(type='submit') Register
+      a(href='https://amidraw.com/login') Already have an account? Log in
