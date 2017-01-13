@@ -8,8 +8,12 @@ html
         var creator = data.username
         var imgpath = data.imgpath
         var desc = data.description
-    h1!=iTitle + ' by ' + creator
-    br
-    p=desc
-    hr
-    img(src=imgpath class='gallery-img-fullsize')
+    div(class='gallery-body-full')
+      div(id='left')
+        img(src=imgpath class='gallery-img-fullsize')
+      div(class='gallery-info-full')
+        div(class='gallery-info-title')
+          h1!=iTitle
+          h3!='by ' + creator
+        div(class='gallery-info-text')
+          p='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer tellus sem, faucibus id leo a, facilisis tincidunt ligula. Curabitur tempus placerat augue, eget sollicitudin nisi.'

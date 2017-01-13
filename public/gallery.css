@@ -15,12 +15,6 @@ html, body {
     height: 270px;
 }
 
-.gallery-img-fullsize {
-    width: 1290px;
-    height: 720px;
-    background: white;
-}
-
 .gallery-item {
     width: auto;
     height: auto;
@@ -65,7 +59,39 @@ html, body {
 
 .main-title {
     color: white;
-
     font-size: 5em;
     font-weight: 100;
+}
+
+/* For full pages */
+.gallery-img-fullsize {
+    width: calc(.75 * 100vw);
+    height: calc(.75 * 56.25vw);
+    background: white;
+}
+
+.gallery-body-full {
+    padding-top: .5em;
+    display: flex;
+}
+
+.gallery-body-full * {
+    box-sizing: border-box;
+}
+
+.gallery-info-full {
+    background: #6d6d6d;
+    max-width:25vw;
+}
+
+.gallery-info-title {
+    width: 100%;
+    border-bottom: 1px solid white;
+    background: #2a2a2a;
+    padding: .3em;
+}
+
+.gallery-info-text {
+    width: 100%;
+    padding: .3em;
 }
