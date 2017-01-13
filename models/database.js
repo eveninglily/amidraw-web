@@ -10,8 +10,8 @@ var client = new pg.Client(connection);
 client.connect();
 
 //Uncomment when regenerating db
-//var sql = fs.readFileSync('models/createdb.sql').toString();
-//client.query(sql);
+var sql = fs.readFileSync('models/createdb.sql').toString();
+client.query(sql);
 
 function getAllGalleryEntries(callback) {
     var query = client.query("SELECT gallery.id, \
@@ -45,7 +45,7 @@ function getGalleryEntry(id, callback, err) {
             err();
             return;
         }
-        callback(result);
+        callback(result["rows"][0]);
     });
 }
 

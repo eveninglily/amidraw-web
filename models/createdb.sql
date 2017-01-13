@@ -13,3 +13,5 @@ CREATE TABLE IF NOT EXISTS users(
     name varchar(32) UNIQUE,
     password text
 );
+
+INSERT INTO users(name, password) VALUES ('Anon', '')

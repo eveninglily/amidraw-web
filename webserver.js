@@ -44,9 +44,8 @@ router.get('/register', function(req, res) {
     });
 }).get('/api/gallery/:id', function(req, res) {
     db.getGalleryEntry(req.params.id, function(data) {
-        var entry = data["rows"][0];
         res.setHeader('Content-Type', 'application/json');
-        res.send(JSON.stringify(entry));
+        res.send(JSON.stringify(data));
     }, function() {
         res.sendStatus(404);
     });
@@ -67,8 +66,7 @@ router.get('/register', function(req, res) {
     res.sendStatus(200);
 }).get('/gallery/:id', function(req, res) {
     db.getGalleryEntry(req.params.id, function(data) {
-        var imgData = data["rows"][0];
-        res.render('galleryEntry', {title: imgData.title, data: imgData})
+        res.render('galleryEntry', {title: data.title, data: data})
     }, function() {
         res.sendStatus(404);
     });
