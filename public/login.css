@@ -1,0 +1,58 @@
+@import url(https://fonts.googleapis.com/css?family=Montserrat);
+
+body {
+    background: #2a2a2a;
+    color: #fbfbfb;
+    font-family: 'Montserrat', sans-serif;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    flex-direction: column;
+}
+
+h1 {
+    margin-top: .2em;
+    font-size: 36px;
+}
+
+button {
+    border: none;
+    color: #fbfbfb;
+    font-size: 1em;
+    padding: .5em;
+    width: 5em;
+    border-radius: 4px;
+    margin: 0em .1em 0em .1em;
+    transition: all .5s;
+    background: #e73955;
+    width: 100%;
+}
+
+.container {
+    background: #6d6d6d;
+    border-radius: 15px;
+    padding: 1em;
+    padding-top: .5em;
+}
+
+a, a:visited {
+    color: #fbfbfb;
+    font-size: 12px;
+}
+
+input[type=text], input[type=password] {
+    border-radius: 5px;
+    padding: 5px;
+    border:2px solid #fbfbfb;
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+input[type=text]:focus, input[type=password]:focus {
+    border-color: #50cfbb;
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(80,207,187,.6);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(80,207,187,.6);
+}
