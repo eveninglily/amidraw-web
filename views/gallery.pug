@@ -1,9 +1,13 @@
 html
   head
     title="AmiDraw Gallery"
-    link(rel='stylesheet', href='/gallery.css')
+    link(rel='stylesheet', href='/style.css')
+    style(type="text/css").
+      #gallery-link {
+        color: #50cfbb;
+      }
   body
-    h1(class='main-title')="Gallery"
+    include navbar.pug
     div(class='gallery-body')
       each image in gallery_items
         -
@@ -12,7 +16,7 @@ html
           var author = image.username
           var id = image.id
         div(class='gallery-item')
-          div(class='gallery-item-meta')
-            h1(class='gallery-item-title')=iTitle
-            h4(class='gallery-item-title')!=author
-          a(href!='https://amidraw.com/gallery/'+id): img(src=path class='gallery-img')
+          div(class='meta')
+            h1(class='title')=iTitle
+            h4(class='title')!=author
+          a(href!='https://amidraw.com/gallery/'+id): img(src=path)

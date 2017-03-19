@@ -1,16 +1,20 @@
 @import url(https://fonts.googleapis.com/css?family=Montserrat);
 
-body, html {
+html, body {
     width: 100%;
     height: 100%;
     margin: 0px;
     padding: 0px;
-}
-
-body {
     background: #2a2a2a;
     color: #fbfbfb;
     font-family: 'Montserrat', sans-serif;
+}
+
+/*
+ * Main page; General Styles
+ */
+
+.centered {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -18,43 +22,42 @@ body {
     align-content: center;
 }
 
-h1 {
+.centered h1 {
     font-size: 8em;
     font-weight: 100;
     display: inline-block;
 }
 
-img {
+#logo {
     width: 25em;
     height: 25em;
     display: inline-block;
 }
 
-a {
-    color: #e73966;
-    text-decoration: none;
-}
-
-#red {
+.red {
     color: #e73966;
     transition: all .5s;
 }
 
-#red:hover {
+a.red {
+    text-decoration: none;
+}
+
+.red:hover {
     background: #e73966;
     color: #fbfbfb;
 }
 
-#blue {
+.blue {
     color: #50cfbb;
 }
 
-#title {
+#main-title {
     display: flex;
     align-items: center;
     justify-content: center;
     align-content: center;
-    
+
 }
 
 .button {
@@ -82,4 +85,144 @@ a {
     position: absolute;
     bottom: 0px;
     margin-bottom: 5vw;
+}
+
+/*
+ * Gallery Page
+ */
+
+ .gallery-item img {
+    width: 480px;
+    height: 270px;
+}
+
+.gallery-item {
+    width: auto;
+    height: auto;
+    margin: 10px;
+    position: relative;
+    box-shadow: 0 0 0 1px rgba(0,0,0,.1), 0 1px 1px rgba(0,0,0,.2), 0 2px 2px rgba(0,0,0,.2);
+    /*box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 0 0 0 rgba(0, 0, 0, 0.12);*/
+    background: white;
+}
+
+.gallery-item:hover .meta {
+    opacity: 1;
+    transition: opacity .4s;
+}
+
+.gallery-item .title {
+    margin: 0px;
+    padding: 0px;
+}
+
+.gallery-item .meta {
+    position: absolute;
+    padding: 10px;
+    left: 0;
+    bottom: 0;
+
+    color: white;
+    background: rgba(0,0,0,.6);
+    width: calc(100% - 20px);
+    opacity: 0;
+}
+
+.gallery-body {
+    display: flex;
+    flex-flow: wrap;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+    width: 90%;
+    margin: auto;
+}
+
+.main-title {
+    color: white;
+    font-size: 5em;
+    font-weight: 100;
+}
+
+/*
+ * Gallery Items
+ */
+
+.entry-img {
+    width: calc(75vw);
+    height: calc(75vw * .5625);
+    background: white;
+}
+
+.flex {
+    display: flex;
+    height: auto;
+}
+
+.flex * {
+    box-sizing: border-box;
+}
+
+.entry-info {
+    background: #6d6d6d;
+    max-width:25vw;
+}
+
+.entry-info .title {
+    width: 100%;
+    background: #2a2a2a;
+    padding: .3em;
+}
+
+.entry-info h1 {
+    margin: 0px;
+}
+
+.entry-info .text {
+    width: 100%;
+    padding: .3em;
+}
+
+/*
+ *
+ */
+ nav {
+     display: flex;
+     align-content: center;
+     align-items: center;
+     font-size: 2em;
+     overflow: hidden;
+     justify-content: flex-start;
+     flex-direction: row;
+
+ }
+
+nav a {
+    text-decoration: none;
+    color: #fbfbfb;
+}
+
+nav a:hover {
+     color: #50cfbb;
+     text-decoration: underline;
+}
+
+nav img {
+    width: 48px;
+    height: 48px;
+    padding: .3em;
+}
+
+nav * {
+    padding-right: 1em;
+}
+
+#justify-right {
+    align-self: flex-end;
+    margin: auto;
+    margin-right: 0px;
+}
+
+#justify-right #login-link {
+    padding: 0px;
 }
