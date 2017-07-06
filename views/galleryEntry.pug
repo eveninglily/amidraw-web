@@ -1,15 +1,24 @@
 html
   head
     title=title
-    link(rel='stylesheet', href='/gallery.css')
+    link(rel='stylesheet', href='/style.css')
+    style(type="text/css").
+      #gallery-link {
+        color: #50cfbb;
+      }
   body
+    include navbar.pug
     -
         var iTitle = data.title
         var creator = data.username
         var imgpath = data.imgpath
         var desc = data.description
-    h1!=iTitle + ' by ' + creator
-    br
-    p=desc
-    hr
-    img(src=imgpath class='gallery-img-fullsize')
+    div(class='flex')
+      div(id='left')
+        img(src=imgpath class='entry-img')
+      div(class='entry-info')
+        div(class='title')
+          h1!=iTitle
+          h3!='by ' + creator
+        div(class='text')
+          p='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer tellus sem, faucibus id leo a, facilisis tincidunt ligula. Curabitur tempus placerat augue, eget sollicitudin nisi.'

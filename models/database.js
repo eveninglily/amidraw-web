@@ -9,6 +9,7 @@ var connection = 'pg://' + dbConfig.user + ":" + dbConfig.password + "@" + dbCon
 var client = new pg.Client(connection);
 client.connect();
 
+//Uncomment when regenerating db
 var sql = fs.readFileSync('models/createdb.sql').toString();
 client.query(sql);
 
@@ -44,11 +45,35 @@ function getGalleryEntry(id, callback, err) {
             err();
             return;
         }
-        callback(result);
+        callback(result["rows"][0]);
     });
+}
+
+function addGalleryEntry(title, description, path, userid) {
+    client.query("INSERT INTO gallery(title, description, imgpath, userid) values ($1, $2, $3, $4);", [title, description, path, userid]);
+}
+
+function getUser(username, callback, err) {
+    var query = client.query("SELECT * FROM users WHERE LOWER(users.name)=LOWER($1);", [username]);
+    query.on("row", function (row, result) {
+        result.addRow(row);
+    }).on("end", function(result) {
+        if(result.length == 0 || result["rows"][0] == null) {
+            err();
+            return;
+        }
+        callback(result ["rows"][0]);
+    });
+}
+
+function createUser(username, password, callback) {
+    client.query("INSERT INTO users(name, password) values ($1, $2) RETURNING *;", [username, password], callback);
 }
 
 module.exports = {
     'getGalleryEntry': getGalleryEntry,
-    'getAllGalleryEntries': getAllGalleryEntries
+    'getAllGalleryEntries': getAllGalleryEntries,
+    'addGalleryEntry': addGalleryEntry,
+    'getUser': getUser,
+    'createUser': createUser
 }
