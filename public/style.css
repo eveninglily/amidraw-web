@@ -8,8 +8,8 @@ body, html {
 }
 
 body {
-    background: #2a2a2a;
-    color: #fbfbfb;
+    background: #191919;
+    color: #ffffff;
     font-family: 'Montserrat', sans-serif;
     display: flex;
     flex-direction: column;
@@ -25,28 +25,9 @@ h1 {
 }
 
 img {
-    width: 25em;
-    height: 25em;
-    display: inline-block;
-}
-
-a {
-    color: #e73966;
-    text-decoration: none;
-}
-
-#red {
-    color: #e73966;
-    transition: all .5s;
-}
-
-#red:hover {
-    background: #e73966;
-    color: #fbfbfb;
-}
-
-#blue {
-    color: #50cfbb;
+    padding: .5em;
+    height: 15em;
+    width: 15em;
 }
 
 #title {
@@ -54,32 +35,5 @@ a {
     align-items: center;
     justify-content: center;
     align-content: center;
-    
-}
 
-.button {
-    font-size: 3em;
-    background: #50cfbb;
-    display: inline-flex;
-    padding: .1em;
-    margin: .2em;
-    border-radius: 4px;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
-    transition: all .5s;
-}
-
-.button:hover {
-    transform: scale(1.05);
-    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
-}
-
-
-.button-red {
-    background: #e73966;
-}
-
-#button-holder {
-    position: absolute;
-    bottom: 0px;
-    margin-bottom: 5vw;
 }
