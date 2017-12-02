@@ -1,14 +1,25 @@
 html
   head
-    title="Register"
-    link(rel='stylesheet', href='/login.css')
-  body
-    div(class='container')
-      h1="Register"
-      form(method='POST' action='/register')
-        input(placeholder='Username' type='text' name='username')
+    title='Register'
+    link(rel='stylesheet' href='/login.css')
+    meta(name='viewport' content='width=device-width, initial-scale=1')
+  body(class='centered')
+    div(id='container' class='centered')
+      h1='Register'
+      form(id='register' method='POST' action='/register')
+        input(placeholder='Email' id='email' name='email' type='text')
         br
-        input(placeholder='Password' type='password' name='password')
+        input(placeholder='Username' id='username' name='username' type='text')
         br
-        button(type='submit') Register
-      a(href='https://amidraw.com/login') Already have an account? Log in
+        input(placeholder='Password' id='password' name='password' type='password')
+        br
+        input(value="Register" type='submit' class="button bg-blue")
+      div Already have an account?
+        br
+        a(href='https://amidraw.com/login')
+          span Log in
+
+    div(id='background')
+      div(class='background-stripe bg-red') &nbsp;
+      div(class='background-stripe bg-yellow') &nbsp;
+      div(class='background-stripe bg-blue') &nbsp;
