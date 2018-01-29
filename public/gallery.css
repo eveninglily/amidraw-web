@@ -1,0 +1,84 @@
+@import url(https://fonts.googleapis.com/css?family=Montserrat);
+
+body, html {
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    background: #191919;
+    color: #ffffff;
+    font-family: 'Montserrat', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+}
+
+.gallery-body {
+    display: flex;
+    flex-flow: wrap;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+    width: 90%;
+    margin: auto;
+}
+
+nav {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    font-size: 2em;
+    overflow: hidden;
+    justify-content: flex-start;
+    flex-direction: row;
+    width: 100%;
+}
+
+nav a {
+   text-decoration: none;
+   color: #fbfbfb;
+}
+
+nav a:hover {
+    color: #50cfbb;
+    text-decoration: underline;
+}
+
+nav img {
+   width: 48px;
+   height: 48px;
+   padding-right: .3em;
+}
+
+nav a {
+   margin-right: 1em;
+}
+
+#justify-right {
+   align-self: flex-end;
+   margin: auto;
+   margin-right: 0px;
+}
+
+#justify-right #login-link {
+   padding: 0px;
+}
+
+#nav-main {
+    display: inline-flex;
+    align-items: center;
+}
+
+
+#nav-main:hover, #nav-draw:hover, #nav-gallery:hover {
+    color: #2264AA;
+}
+
+#nav-login:hover, #nav-register:hover {
+    color: #E55E5B;
+}

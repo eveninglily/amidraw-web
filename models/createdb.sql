@@ -14,4 +14,5 @@ CREATE TABLE IF NOT EXISTS users(
     password text
 );
 
-INSERT INTO users(name, password) VALUES ('Anon', '')
+INSERT INTO users(name, password) VALUES ('Anon', '');
+INSERT INTO gallery(title, description, imgpath, userid) VALUES ('Upload', '<No description availible>', 'https://amidraw.com/gallery/img/test.png', 1);
